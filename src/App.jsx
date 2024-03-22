@@ -34,15 +34,15 @@ const App = () => {
             onClick={handleReset}
           />
         </div>
-        <div className="bg-lime-950 rounded-b-lg flex items-center justify-around p-5">
+        <div className="bg-lime-950 rounded-b-lg flex items-center justify-around">
           <Button
-            className={"text-lime-400 hover:text-lime-500"}
+            className={"text-lime-400 hover:text-lime-500 p-5"}
             icon={<FaMinus />}
             onClick={handlePrev}
           />
           <Button
             icon={<FaPlus />}
-            className={"text-lime-400 hover:text-lime-500"}
+            className={"text-lime-400 hover:text-lime-500 p-5"}
             onClick={handleNext}
           />
         </div>
