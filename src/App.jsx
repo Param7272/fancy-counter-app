@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Count from "./components/Count";
 import Button from "./components/Button";
 import { RxReset } from "react-icons/rx";
@@ -16,8 +16,25 @@ const App = () => {
   };
 
   const handlePrev = () => {
-    setCount(count - 1);
+    if (count > 0) {
+      setCount(count - 1);
+    }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "-") {
+        handlePrev();
+      } else if (e.key === "+") {
+        handleNext();
+      } else {
+        return;
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [count]);
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-lime-800 text-white">
@@ -39,6 +56,7 @@ const App = () => {
             className={"text-lime-400 hover:text-lime-500 p-5"}
             icon={<FaMinus />}
             onClick={handlePrev}
+            onkeydown={onkeydown}
           />
           <Button
             icon={<FaPlus />}
